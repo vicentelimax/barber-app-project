@@ -25,6 +25,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "firebaseApiKey": "AIzaSyC-cYg5dXGBi2jY5nLeJnPlyQfZg7uSdL4",
+      "firebaseAuthDomain": "barber-shop-eb699.firebaseapp.com",
+      "firebaseProjectId": "barber-shop-eb699",
+      "firebaseStorageBucket": "barber-shop-eb699.appspot.com",
+      "firebaseMessagingSenderId": "244207269412",
+      "firebaseAppId": "1:244207269412:web:c98d80626202b9285b8ab1"
     }
   }
 }

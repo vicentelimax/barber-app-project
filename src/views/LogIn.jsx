@@ -1,14 +1,16 @@
+// Autenticacao
+import auth from '../services/firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 import { View, StyleSheet, KeyboardAvoidingView,ImageBackground } from 'react-native';
 import { Card, TextInput, Button } from 'react-native-paper';
 import { useState } from 'react';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
-import { db } from '../services/firebase-config'
 import { useNavigation } from '@react-navigation/native';
 
-const LogIn = () => {
+const LogIn = ({ setUser }) => {
     
-    const [textUser, setTextUser] = useState("")
-    const [textPassword, setTextPassword] = useState("")
+    const [emailUser, setEmailUser] = useState("")
+    const [passwordUser, setPasswordUser] = useState("")
     
     const navigation = useNavigation();
 
@@ -20,6 +22,23 @@ const LogIn = () => {
         navigation.navigate('ForgotPassword')
     }
     
+    const handleLogin = () => {
+        createUserWithEmailAndPassword(auth, emailUser, passwordUser)
+            .then((userCredendial) => {
+                const user = userCredendial.user;
+
+                console.log(user);
+                setUser(user);
+            })
+            .cath((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                
+                console.log(errorMessage);
+            });
+    };
+    
+
     return(
         
         <View style={styles.container}>
@@ -36,20 +55,18 @@ const LogIn = () => {
                     />
                     <TextInput
                         label="Email"
-                        value={textUser}
-                        onChangeText={textUser => setTextUser(textUser)}
+                        value={emailUser}
                         style={styles.textinput}
                     />
                     <TextInput
                         label="Senha"
                         secureTextEntry={true}
-                        value={textPassword}
-                        onChageText={textPassword => setTextPassword(textPassword)}
+                        value={passwordUser}
                         right={<TextInput.Icon icon="eye" />}
                     />
                     <Button
                         mode="contained"
-                        onPress={() => console.log('Pressed')}
+                        onPress={handleLogin}
                         style = {styles.button}>
                         Entrar  
                     </Button>

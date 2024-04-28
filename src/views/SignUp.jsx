@@ -2,16 +2,20 @@ import { TextInput, Text, Button, HelperText } from 'react-native-paper';
 import{ View, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 const SignUp = () => {
 
     const [emailUser, setEmailUser] = useState("");
-    const [textPassword, setTextPassword] = useState("");
+    const [passwordUser, setPasswordUser] = useState("");
     const [textPasswordValidate, setTextPasswordValidate] = useState("");
     
     const validatePassword = () => {
         return textPassword.length >= 6 && /[a-zA-Z]/.test(textPassword) && /[0-9]/.test(textPassword);
+    };
+    const validateEmail = () =>{
+        return !emailUser.includes("@");
     };
 
     const navigation = useNavigation();
@@ -20,9 +24,22 @@ const SignUp = () => {
         navigation.navigate('LogIn'); // realiza a navegação
     };
 
-    const validateEmail = () =>{
-        return !emailUser.includes("@");
+    const handleRegistration = () => {
+        createUserWithEmailAndPassword(auth, emailUser, passwordUser)
+            .then((userCredendial) => {
+                const user = userCredendial.user;
+
+                console.log(user);
+                setUser(user);
+            })
+            .cath((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                
+                console.log(errorMessage);
+            });
     };
+    
 
     return(
         <View style={styles.container}>
@@ -68,7 +85,7 @@ const SignUp = () => {
                 />
                 <Button
                     mode="contained"
-                    onPress={() => console.log("Pressed")}
+                    onPress={handleRegistration}
                     style = {styles.button}>
                     Criar Conta 
                 </Button>
