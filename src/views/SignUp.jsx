@@ -3,6 +3,7 @@ import{ View, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../services/firebaseConfig';
 
 
 const SignUp = () => {
@@ -67,7 +68,6 @@ const SignUp = () => {
                     label="Senha"
                     style={styles.textinput}
                     value={textPassword}
-                    onChangeText={(text) => setTextPassword(text)}
                     secureTextEntry
                 />
                 <HelperText

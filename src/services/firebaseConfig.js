@@ -1,4 +1,3 @@
-import firebase from 'react-native-firebase';
 import { initializeApp  } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';

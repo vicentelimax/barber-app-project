@@ -1,5 +1,5 @@
 // Autenticacao
-import auth from '../services/firebaseConfig';
+import { auth } from '../services/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import { View, StyleSheet, KeyboardAvoidingView,ImageBackground } from 'react-native';
