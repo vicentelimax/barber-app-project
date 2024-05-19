@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../services/firebaseConfig';
 
 import { View } from 'react-native';
@@ -10,7 +10,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
 
 const Stack = createNativeStackNavigator();
-const provider = new GoogleAuthProvider();
 
 const Entrar = () => {
 
